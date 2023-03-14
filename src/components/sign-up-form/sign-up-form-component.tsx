@@ -1,7 +1,7 @@
 
 import { ChangeEvent, FormEvent, useState } from "react"
 import { ISignUpForm } from "../../types/ISignUpForm"
-import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils"
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils"
 
 interface ISignUpFormProps {
 
@@ -23,7 +23,9 @@ export const SignUpForm = (props: ISignUpFormProps) => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
-    console.log(formFields)
+    const resetFormFields = () => {
+        setFormFields(defaultFormFields)
+    };
 
     const handleChange = (event: IHandleChange) => {
         const { name, value } = event.target;
@@ -37,13 +39,19 @@ export const SignUpForm = (props: ISignUpFormProps) => {
             alert("Passwords do not match");
             return;
         }
-
         try {
-            await createAuthUserWithEmailAndPassword(email, password);
+            const { user } = await createAuthUserWithEmailAndPassword(email, password);
+
+            await createUserDocumentFromAuth(user, { displayName });
+            resetFormFields();
         }
         catch (error) {
             if (error instanceof Error) {
-                console.log("error creating the user", error.message);
+                if (error.message === 'auth/email-already-in-use') {
+                    alert('Cannot create user, email already in use')
+                } else {
+                    console.log("error creating the user", error.message);
+                }
             } else {
                 console.log("unexpected error", error)
             }
