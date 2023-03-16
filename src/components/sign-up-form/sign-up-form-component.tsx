@@ -29,6 +29,7 @@ export const SignUpForm = (props: ISignUpFormProps) => {
     const handleChange = (event: ISignUpHandleChange) => {
         const { name, value } = event.target;
         setFormFields({ ...formFields, [name]: value });
+        console.log(formFields)
     };
 
     const handleSubmit = async (event: FormEvent) => {
@@ -65,7 +66,7 @@ export const SignUpForm = (props: ISignUpFormProps) => {
                 <FormInput
                     label="User Name"
                     type="text"
-                    name="userName"
+                    name="displayName"
                     value={displayName}
                     handleChange={handleChange}
                 />

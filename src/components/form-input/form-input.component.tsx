@@ -17,7 +17,7 @@ export const FormInput = (props:IFormInputProps) => {
                 type={props.type}
                 required
                 onChange={props.handleChange}
-                name="displayName"
+                name={props.name}
                 value={props.value}
             />
 
