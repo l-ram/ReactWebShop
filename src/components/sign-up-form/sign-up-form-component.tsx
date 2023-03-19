@@ -4,6 +4,7 @@ import { ISignUpHandleChange } from "../../types/ISignUpHandleChange";
 import { ISignUpForm } from "../../types/ISignUpForm"
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils"
 import { FormInput } from "../form-input/form-input.component";
+import { Button } from "../button/button.component";
 
 interface ISignUpFormProps {
 
@@ -18,7 +19,6 @@ const defaultFormFields: ISignUpForm = {
 }
 
 export const SignUpForm = (props: ISignUpFormProps) => {
-
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
@@ -59,8 +59,9 @@ export const SignUpForm = (props: ISignUpFormProps) => {
     };
 
     return (
-        <div>
-            <h1>Sign up with your email and password</h1>
+        <div className="sign-up-container">
+            <h2>Don't have an account?</h2>
+            <span>Sign up with your email and password</span>
             <form onSubmit={handleSubmit} action="">
 
                 <FormInput
@@ -95,7 +96,10 @@ export const SignUpForm = (props: ISignUpFormProps) => {
                     handleChange={handleChange}
                 />
 
-                <button type="submit">Sign up</button>
+                    <Button
+                        functionType="Sign-up" 
+                        type="submit"
+                    />
             </form>
         </div>
     )

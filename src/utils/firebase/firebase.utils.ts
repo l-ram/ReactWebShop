@@ -4,6 +4,7 @@ import {
     getAuth,
     signInWithRedirect,
     signInWithPopup,
+    signInWithEmailAndPassword,
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
     User,
@@ -37,7 +38,7 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 //  init firestore
 export const db = getFirestore(firebaseApp);
 
-export const createUserDocumentFromAuth = async (user: User, additionalInfo:{}) => {
+export const createUserDocumentFromAuth = async (user: User, additionalInfo?:{}) => {
     if (!user) return; 
 
     const userDocRef = doc(db, 'users', user.uid);
@@ -71,5 +72,11 @@ export const createUserDocumentFromAuth = async (user: User, additionalInfo:{}) 
 
 export const createAuthUserWithEmailAndPassword = async (email:string, password:string) => {
 
+
     return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const signInAuthUserWithEmailAndPassword = async (email:string, password:string) => {
+    if (!email || ! password) return;
+    return await signInWithEmailAndPassword(auth, email, password);
 };

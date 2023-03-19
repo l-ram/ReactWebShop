@@ -12,8 +12,6 @@ interface IFormInputProps {
 export const FormInput = (props: IFormInputProps) => {
     return (
         <div className="group">
-            <h2>Don't have an account?</h2>
-            <span>Sign up with your email and password</span>
             <input
                 className="form-input"
                 type={props.type}
