@@ -2,17 +2,18 @@
 import './button.styles.scss'
 
 interface IButtonProps extends React.ComponentPropsWithoutRef<"button"> {
-    functionType: 'Sign-in' | 'Sign-up' | 'Sign-in with Google'
     buttonStyle?: 'google-sign-in' | 'inverted' | undefined
+    googleSignIn?(): void;
 }
 
 export const Button = (props: IButtonProps) => {
     return (
         <button
-            type={props.type}
+            onClick={props.googleSignIn}
             className={`button-container ${props.buttonStyle}`}
+            type={props.type}
         >
-        {props.functionType}
+            {props.value}
         </button>
     )
 }

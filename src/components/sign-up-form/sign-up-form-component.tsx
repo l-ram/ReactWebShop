@@ -5,6 +5,7 @@ import { ISignUpForm } from "../../types/ISignUpForm"
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils"
 import { FormInput } from "../form-input/form-input.component";
 import { Button } from "../button/button.component";
+import './sign-up-form.styles.scss'
 
 interface ISignUpFormProps {
 
@@ -96,10 +97,13 @@ export const SignUpForm = (props: ISignUpFormProps) => {
                     handleChange={handleChange}
                 />
 
-                    <Button
-                        functionType="Sign-up" 
-                        type="submit"
-                    />
+                <Button
+                    value="Create new account"
+                    type="submit"
+                    buttonStyle="inverted"
+                >
+                    
+                </Button>
             </form>
         </div>
     )

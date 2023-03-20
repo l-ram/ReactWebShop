@@ -27,7 +27,7 @@ export const SignInForm = (props: ISignInFormProps) => {
 
     const signInWithGoogle = async () => {
         const { user } = await signInWithGooglePopup();
-        console.log(user);
+        console.log(user)
         await createUserDocumentFromAuth(user);
     };
 
@@ -56,43 +56,43 @@ export const SignInForm = (props: ISignInFormProps) => {
         };
     };
 
-        return (
-            <div className="sign-up-container">
-                <h2>Already have an account?</h2>
-                <span>Sign in with your email and password</span>
-                <form onSubmit={handleSubmit} action="">
+    return (
+        <div className="sign-in-container">
+            <h2>Already have an account?</h2>
+            <span>Sign in with your email and password</span>
+            <form onSubmit={handleSubmit} action="">
 
-                    <FormInput
-                        label="Email"
-                        type="email"
-                        name="email"
-                        value={email}
-                        handleChange={handleChange}
-                    />
+                <FormInput
+                    label="Email"
+                    type="email"
+                    name="email"
+                    value={email}
+                    handleChange={handleChange}
+                />
 
-                    <FormInput
-                        label="Password"
-                        type="password"
-                        name="password"
-                        value={password}
-                        handleChange={handleChange}
-                    />
+                <FormInput
+                    label="Password"
+                    type="password"
+                    name="password"
+                    value={password}
+                    handleChange={handleChange}
+                />
 
-                    <div className="buttons-container">
-                        <Button
-                            functionType="Sign-in"
-                            type="submit"
-                            buttonStyle="inverted"
-                        />
+                <div className="buttons-container">
+                    <Button
+                        value="Sign-in"
+                        type="submit"
+                    ></Button>
 
-                        <Button
-                            onClick={signInWithGoogle}
-                            functionType="Sign-in with Google"
-                            type="button"
-                            buttonStyle="google-sign-in"
-                        />
-                    </div>
-                </form>
-            </div>
-        )
-    }
+                    <Button
+                        value="Google Sign-in"
+                        googleSignIn={signInWithGoogle}
+                        type="button"
+                        buttonStyle="google-sign-in"
+                    >
+                    </Button>
+                </div>
+            </form>
+        </div>
+    )
+}

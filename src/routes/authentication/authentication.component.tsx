@@ -4,9 +4,8 @@ import './authentication.component.scss';
 
 const Authentication = () => {
     return (
-        <div className='sign-up-container'>
+        <div className='authentication-container'>
 
-            <h1>Sign In Page</h1>
             <SignInForm/>
             <SignUpForm/>
 
