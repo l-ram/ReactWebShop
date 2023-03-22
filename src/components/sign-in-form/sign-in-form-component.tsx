@@ -1,11 +1,13 @@
 
-import { FormEvent, useState } from "react"
+import { FormEvent, useContext, useState } from "react"
 import { ISignUpHandleChange } from "../../types/ISignUpHandleChange";
 import { ISignInForm } from "../../types/ISignInForm"
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../../utils/firebase/firebase.utils"
 import { FormInput } from "../form-input/form-input.component";
 import { Button } from "../button/button.component";
 import './sign-in-form.styles.scss'
+
+import { UserContext } from "../../contexts/user.context";
 
 interface ISignInFormProps {
 
@@ -20,6 +22,8 @@ export const SignInForm = (props: ISignInFormProps) => {
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
+
+    const { setCurrentUser } = useContext(UserContext);
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields)
@@ -40,7 +44,9 @@ export const SignInForm = (props: ISignInFormProps) => {
         event.preventDefault();
         try {
             const response = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(response);
+
+            setCurrentUser(response);
+
             resetFormFields();
         } catch (error: any) {
             if (error as NodeJS.ErrnoException) {
