@@ -1,29 +1,20 @@
 import { createContext, useState } from 'react';
 
-interface IUserContext {
-    currentUser: {} | null
-    setCurrentUser: () => void
-}
 
 // Value we want to access
-export const UserContext = createContext<IUserContext>(
+export const UserContext = createContext(
     {
         currentUser: null,
-        setCurrentUser: () => null
+        setCurrentUser: () => null,
     }
 );
-
 
 // The provider
 export const UserProvider = ({ }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const value = { currentUser, setCurrentUser };
 
-    return (
-        <UserContext.Provider value={value}
-        >
-        </UserContext.Provider>
-    )
+    return
+    <UserContext.Provider value={value}>
+    </UserContext.Provider>
 }
-
-const { currentUser, setCurrentUser, value } = UserProvider
