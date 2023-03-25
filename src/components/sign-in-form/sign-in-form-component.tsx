@@ -43,9 +43,10 @@ export const SignInForm = (props: ISignInFormProps) => {
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         try {
-            const response = await signInAuthUserWithEmailAndPassword(email, password);
+            const { user } = await signInAuthUserWithEmailAndPassword(email, password);
 
-            setCurrentUser(response);
+            
+            setCurrentUser(user);
 
             resetFormFields();
         } catch (error: any) {

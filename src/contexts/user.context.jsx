@@ -1,3 +1,4 @@
+import { UserCredential } from 'firebase/auth';
 import { createContext, useState } from 'react';
 
 
@@ -5,16 +6,20 @@ import { createContext, useState } from 'react';
 export const UserContext = createContext(
     {
         currentUser: null,
-        setCurrentUser: () => null,
+        setCurrentUser: (e) => null,
     }
 );
 
 // The provider
-export const UserProvider = ({ }) => {
+export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
     const value = { currentUser, setCurrentUser };
 
-    return
-    <UserContext.Provider value={value}>
-    </UserContext.Provider>
-}
+    console.log(value);
+
+    return (
+        <UserContext.Provider value={value}>
+        {children}
+        </UserContext.Provider>
+        );
+};
