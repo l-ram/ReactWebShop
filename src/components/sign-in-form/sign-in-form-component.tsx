@@ -31,7 +31,6 @@ export const SignInForm = (props: ISignInFormProps) => {
 
     const signInWithGoogle = async () => {
         const { user } = await signInWithGooglePopup();
-        console.log(user)
         await createUserDocumentFromAuth(user);
     };
 
@@ -44,10 +43,6 @@ export const SignInForm = (props: ISignInFormProps) => {
         event.preventDefault();
         try {
             const { user } = await signInAuthUserWithEmailAndPassword(email, password);
-
-            
-            setCurrentUser(user);
-
             resetFormFields();
         } catch (error: any) {
             if (error as NodeJS.ErrnoException) {
