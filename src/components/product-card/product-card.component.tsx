@@ -11,12 +11,12 @@ interface IProductCardProps {
 const ProductCard = (props: IProductCardProps) => {
     return (
         <div className='product-card-container'>
-            <img src={props.imageUrl} alt='' />
+            <img src={props.imageUrl} alt={`${props.name}`} />
             <div className='footer'>
                 <span className='name'>{props.name}</span>
                 <span className='price'>{props.price}</span>
             </div>
-            <Button buttonStyle='inverted'>Add to cart</Button>
+            <Button value={'Add to Cart'} buttonStyle='inverted'></Button>
         </div>)
 }
 
