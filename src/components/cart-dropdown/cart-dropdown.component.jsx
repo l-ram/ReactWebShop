@@ -8,14 +8,19 @@ import './cart-dropdown.styles.scss'
 
 const CartDropDown = () => {
 
-const { cartItems } = useContext(CartContext)
+    const { cartItems } = useContext(CartContext)
 
     return (
         <div className='cart-dropdown-container'>
-            <div className='cart-items' />
-            {cartItems.map( (item:any) =>(
-            <CartItem key={item.id} name={item.name} quantity={item.quantity}/>
-            ))}
+            <div className='cart-items'>
+                {cartItems.length ? (
+                    cartItems.map((cartItem) => (
+                        <CartItem key={cartItem.id} cartItem={cartItem} />
+                    ))
+                ) : (
+                    <span className='empty-message'>Your Cart is Empty</span>
+                )}
+            </div>
             <Button value={'To checkout'}></Button>
         </div>
     )

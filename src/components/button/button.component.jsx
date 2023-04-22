@@ -1,10 +1,10 @@
 
 import './button.styles.scss'
 
-interface IButtonProps extends React.ComponentPropsWithoutRef<"button"> {
-    buttonStyle?: 'google-sign-in' | 'inverted' | undefined
-    googleSignIn?(): void;
-}
+// interface IButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+//     buttonStyle?: 'google-sign-in' | 'inverted' | undefined
+//     googleSignIn?(): void;
+// }
 
 export const Button = (props: IButtonProps) => {
     return (
