@@ -81,17 +81,9 @@ export const SignInForm = (props: ISignInFormProps) => {
                 />
 
                 <div className="buttons-container">
-                    <Button
-                        value="Sign-in"
-                        type="submit"
-                    ></Button>
-
-                    <Button
-                        value="Google Sign-in"
-                        googleSignIn={signInWithGoogle}
-                        type="button"
-                        buttonStyle="google-sign-in"
-                    >
+                    <Button buttonType={''} type='submit'>Sign In</Button>
+                    <Button buttonType='google' type='button' onClick={signInWithGoogle}>
+                        Sign In With Google
                     </Button>
                 </div>
             </form>

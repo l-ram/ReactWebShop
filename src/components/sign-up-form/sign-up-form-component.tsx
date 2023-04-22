@@ -103,11 +103,10 @@ export const SignUpForm = (props: ISignUpFormProps) => {
                 />
 
                 <Button
-                    value="Create new account"
+                    buttonType={''}
                     type="submit"
-                    buttonStyle="inverted"
                 >
-                    
+
                 </Button>
             </form>
         </div>

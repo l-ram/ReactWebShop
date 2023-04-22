@@ -6,14 +6,20 @@ import './button.styles.scss'
 //     googleSignIn?(): void;
 // }
 
-export const Button = (props: IButtonProps) => {
+export const BUTTON_TYPE_CLASSES = {
+    google: "google-sign-in",
+    inverted: "inverted",
+};
+
+export const Button = ({children, buttonType, ...otherProps}) => {
     return (
         <button
-            onClick={props.googleSignIn}
-            className={`button-container ${props.buttonStyle}`}
-            type={props.type}
+            className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
+            {...otherProps}
         >
-            {props.value}
+            {children}
         </button>
-    )
-}
+    );
+};
+
+export default Button
