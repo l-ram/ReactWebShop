@@ -7,15 +7,26 @@ import { CartContext } from '../../contexts/cart.context.jsx'
 import './cart-icon.styles.scss';
 
 const CartIcon = () => {
-    const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+    const { isCartOpen, setIsCartOpen, cartItems } = useContext(CartContext);
     const toggleIsCartOpen = () => setIsCartOpen(!isCartOpen);
+
+
 
     return (
         <div className='cart-icon-container' onClick={toggleIsCartOpen}>
-            <ShoppingIcon className='shopping-icon'/>
-            <span className='item-count'>
+            <ShoppingIcon className='shopping-icon' />
 
-            </span>
+            {cartItems.length ?
+
+                <span className='item-count'>
+                    {`${cartItems.length}`}
+                </span>
+
+                : <span></span>
+            
+            }
+
+
         </div>
     )
 }
