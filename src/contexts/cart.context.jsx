@@ -35,10 +35,10 @@ export const removeCartItem = (cartItems, cartItemToRemove) => {
 
     return cartItems.map((cartItem) =>
 
-    cartItem.id === cartItemToRemove.id
-        ? { ...cartItem, quantity: cartItem.quantity - 1 }
-        : cartItem
-);
+        cartItem.id === cartItemToRemove.id
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+    );
 
 }
 
@@ -60,7 +60,7 @@ export const CartProvider = ({ children }) => {
         const newCartCount = cartItems.reduce((total, cartItem) =>
             total + cartItem.quantity, 0)
         setCartCount(newCartCount);
-    }, [cartItems])
+    }, [cartItems]);
 
 
     const addItemToCart = (product) =>
