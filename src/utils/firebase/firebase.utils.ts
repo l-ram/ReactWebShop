@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch } from "firebase/firestore";
 import {
     getAuth,
     signInWithRedirect,
@@ -14,6 +14,7 @@ import {
     NextOrObserver
 }
     from "firebase/auth";
+import { IShopData } from "../../types/IShopData";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBqZg0GXsW1G13AhaXOHY_wXNu9srXXNhI",
@@ -40,6 +41,21 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 
 //  init firestore
 export const db = getFirestore(firebaseApp);
+
+export const addCollectionAndDocuments = async (collectionKey:string, objectsToAdd:IShopData[]) => {
+    const collectionRef = collection(db, collectionKey);
+    const batch = writeBatch(db);
+
+    objectsToAdd.forEach(object => {
+        const docRef = doc(collectionRef, object.title.toLowerCase());
+        batch.set(docRef, object);
+    });
+
+    await batch.commit();
+    console.log('Done');
+
+}
+
 
 export const createUserDocumentFromAuth = async (user: User, additionalInfo?:{}) => {
     if (!user) return; 
