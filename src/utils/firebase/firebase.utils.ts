@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, getDoc, setDoc, collection, writeBatch } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, getDocs, collection, writeBatch, query, DocumentData } from "firebase/firestore";
 import {
     getAuth,
     signInWithRedirect,
@@ -8,7 +8,6 @@ import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
     User,
-    UserCredential,
     signOut,
     onAuthStateChanged,
     NextOrObserver
@@ -24,7 +23,6 @@ const firebaseConfig = {
     messagingSenderId: "342940755995",
     appId: "1:342940755995:web:3ce6cdfd830dd946c6b0be"
 };
-
 
 const firebaseApp = initializeApp(firebaseConfig);
 
@@ -42,8 +40,10 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 //  init firestore
 export const db = getFirestore(firebaseApp);
 
+// Create new collection
 export const addCollectionAndDocuments = async (collectionKey:string, objectsToAdd:IShopData[]) => {
     const collectionRef = collection(db, collectionKey);
+    console.log(collectionRef);
     const batch = writeBatch(db);
 
     objectsToAdd.forEach(object => {
@@ -53,9 +53,23 @@ export const addCollectionAndDocuments = async (collectionKey:string, objectsToA
 
     await batch.commit();
     console.log('Done');
-
 }
 
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(db, 'categories');
+    const q = query(collectionRef);
+    const querySnapShot = await getDocs(q);
+
+    const categoryMap = querySnapShot.docs.reduce((acc:DocumentData, docSnapshot) => {
+        const { title, items } = docSnapshot.data();
+        console.log(items)
+        acc[title.toLowerCase()] = items;
+        console.log(acc);
+        return acc;
+    }, {});
+
+    return categoryMap;
+}
 
 export const createUserDocumentFromAuth = async (user: User, additionalInfo?:{}) => {
     if (!user) return; 
@@ -103,4 +117,4 @@ export const signInAuthUserWithEmailAndPassword = async (email:string, password:
 export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => {
-    onAuthStateChanged(auth, callback)}
+    onAuthStateChanged(auth, callback)};
