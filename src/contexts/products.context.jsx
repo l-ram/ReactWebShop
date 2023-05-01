@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import SHOP_DATA from '../shop-data.js';
+import SHOP_DATA from '../shop-data.ts';
 
 // interface IProductContextValue {
 //     products: {
