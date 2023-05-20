@@ -1,4 +1,4 @@
-import './category-item.component.scss'
+import './directory-item.component.scss'
 
 
 interface ICategoryItemProps {
@@ -10,17 +10,17 @@ interface ICategoryItemProps {
 }
 
 
-const CategoryItem = (props:ICategoryItemProps) => {
+const DirectoryItem = (props:ICategoryItemProps) => {
 
 const { imageUrl, title} = props.category;
 
 return (
 
-    <div className="category-container">
+    <div className="directory-item-container">
     <div className="background-image" style={
       {backgroundImage: `url(${imageUrl})`}}>
       </div>
-    <div className="category-body-container">
+    <div className="body">
       <h2>{title}</h2>
       <p>Shop now</p>
     </div>
@@ -30,4 +30,4 @@ return (
 
 }
 
-export default CategoryItem
+export default DirectoryItem;

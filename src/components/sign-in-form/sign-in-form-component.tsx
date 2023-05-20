@@ -2,9 +2,9 @@
 import { FormEvent, useContext, useState } from "react"
 import { ISignUpHandleChange } from "../../types/ISignUpHandleChange";
 import { ISignInForm } from "../../types/ISignInForm"
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../../utils/firebase/firebase.utils"
+import { createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../../utils/firebase/firebase.utils"
 import { FormInput } from "../form-input/form-input.component";
-import { Button } from "../button/button.component";
+import Button, {BUTTON_TYPE_CLASSES} from "../button/button.component";
 import './sign-in-form.styles.scss'
 
 import { UserContext } from "../../contexts/user.context";
@@ -82,7 +82,7 @@ export const SignInForm = (props: ISignInFormProps) => {
 
                 <div className="buttons-container">
                     <Button buttonType={''} type='submit'>Sign In</Button>
-                    <Button buttonType='google' type='button' onClick={signInWithGoogle}>
+                    <Button buttonType={BUTTON_TYPE_CLASSES.google} type='button' onClick={signInWithGoogle}>
                         Sign In With Google
                     </Button>
                 </div>
