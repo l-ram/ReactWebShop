@@ -1,5 +1,5 @@
 import { ISignUpHandleChange } from "../../types/ISignUpHandleChange";
-import './form-input.styles.scss';
+import { FormInputLabel, Input, Group } from './form-input.styles';
 
 interface IFormInputProps {
     type: string,
@@ -11,8 +11,8 @@ interface IFormInputProps {
 
 export const FormInput = (props: IFormInputProps) => {
     return (
-        <div className="group">
-            <input
+        <Group>
+            <Input
                 className="form-input"
                 type={props.type}
                 required
@@ -21,15 +21,15 @@ export const FormInput = (props: IFormInputProps) => {
                 value={props.value}
             />
 
-            <label
+            <FormInputLabel
                 className={`${props.value.length ? 'shrink' : ''
                     } form-input-label`}
             >
                 {props.label}
-            </label>
+            </FormInputLabel>
 
 
 
-        </div>
+        </Group>
     );
 };

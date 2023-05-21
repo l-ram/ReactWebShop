@@ -29,13 +29,7 @@ ${InvertedButton} {
 export const EmptyMessage = styled.span`
       font-size: 18px;
       margin: 50px auto;
-
-
-${CartDropdownContainer} {
-
-}
-
-`
+`;
 
 
 export const CartItems = styled.div`
@@ -44,11 +38,4 @@ export const CartItems = styled.div`
       flex-direction: column;
       overflow: auto;
 `
-
-  
-  
-    button {
-      margin-top: auto;
-    }
-  }
   
