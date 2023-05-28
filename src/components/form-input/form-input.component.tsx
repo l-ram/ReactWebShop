@@ -27,9 +27,6 @@ export const FormInput = (props: IFormInputProps) => {
             >
                 {props.label}
             </FormInputLabel>
-
-
-
         </Group>
     );
 };

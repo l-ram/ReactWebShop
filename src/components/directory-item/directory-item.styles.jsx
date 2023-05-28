@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import styled from 'styled-components';
 
 export const BackgroundImage = styled.div`
@@ -32,7 +33,7 @@ export const Body = styled.div`
   }
 `;
 
-export const DirectoryItemContainer = styled.div`
+export const DirectoryItemContainer = styled.button`
   min-width: 30%;
   height: 240px;
   flex: 1 1 auto;

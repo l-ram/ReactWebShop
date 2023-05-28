@@ -1,5 +1,5 @@
 import './directory.component.scss';
-import CategoryItem from '../directory-item/directory-item.component';
+import DirectoryItem from '../directory-item/directory-item.component';
 import { ICategoriesArray } from '../../types/ICategoriesArray';
 
 interface IDirectoryProps {
@@ -11,7 +11,7 @@ const Directory = (props: IDirectoryProps) => {
     return (
         <div className='directory-container'>
             {props.categories.map((category) => (
-                <CategoryItem key={category.id} category={category} />
+                <DirectoryItem key={category.id} category={category} />
             ))}
         </div>
     );
