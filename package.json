@@ -2,7 +2,6 @@
   "name": "webshop",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "dependencies": {
     "@stripe/react-stripe-js": "^2.1.0",
     "@stripe/stripe-js": "^1.54.0",
