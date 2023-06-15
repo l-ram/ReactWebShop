@@ -3,10 +3,12 @@ import './checkout.styles.scss';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import PaymentForm from '../../components/payment-form/payment-form.component';
+
 
 const Checkout = () => {
 
-    const { cartItems, cartTotal} = useContext(CartContext);
+    const { cartItems, cartTotal } = useContext(CartContext);
 
     return (
         <div className='checkout-container'>
@@ -30,7 +32,7 @@ const Checkout = () => {
             {cartItems.map((cartItem) => {
                 return (
 
-                    <CheckoutItem 
+                    <CheckoutItem
                         key={cartItem.id}
                         cartItem={cartItem}
                     />
@@ -39,6 +41,9 @@ const Checkout = () => {
             })
             }
             <span className='total'>Total: ${cartTotal}</span>
+
+            <PaymentForm/>
+
         </div>
     );
 };

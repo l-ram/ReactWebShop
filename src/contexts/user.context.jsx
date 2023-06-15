@@ -64,9 +64,3 @@ export const UserProvider = ({ children }) => {
         </UserContext.Provider>
     );
 };
-
-// const userReducer = (state, action) => {
-//     return {
-//         currentUser: {}
-//     }
-// }
