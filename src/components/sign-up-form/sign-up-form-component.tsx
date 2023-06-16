@@ -103,6 +103,7 @@ export const SignUpForm = (props: ISignUpFormProps) => {
                 />
 
                 <Button
+                    isLoading={false}
                     buttonType={BUTTON_TYPE_CLASSES.inverted}
                     type="submit"
                 >
