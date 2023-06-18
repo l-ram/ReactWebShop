@@ -1,7 +1,5 @@
 
-import { FormEvent, useContext, useState } from "react"
-import { ISignUpHandleChange } from "../../types/ISignUpHandleChange";
-import { ISignInForm } from "../../types/ISignInForm"
+import { useContext, useState } from "react"
 import { createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../../utils/firebase/firebase.utils"
 import { FormInput } from "../form-input/form-input.component";
 import Button, {BUTTON_TYPE_CLASSES} from "../button/button.component";
@@ -9,16 +7,12 @@ import './sign-in-form.styles.scss'
 
 import { UserContext } from "../../contexts/user.context";
 
-interface ISignInFormProps {
-
-}
-
-const defaultFormFields: ISignInForm = {
+const defaultFormFields = {
     email: '',
     password: '',
 }
 
-export const SignInForm = (props: ISignInFormProps) => {
+export const SignInForm = () => {
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
@@ -34,18 +28,18 @@ export const SignInForm = (props: ISignInFormProps) => {
         await createUserDocumentFromAuth(user);
     };
 
-    const handleChange = (event: ISignUpHandleChange) => {
+    const handleChange = (event) => {
         const { name, value } = event.target;
         setFormFields({ ...formFields, [name]: value });
     };
 
-    const handleSubmit = async (event: FormEvent) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const { user } = await signInAuthUserWithEmailAndPassword(email, password);
             resetFormFields();
-        } catch (error: any) {
-            if (error as NodeJS.ErrnoException) {
+        } catch (error) {
+            if (error) {
                 switch (error.code) {
                     case 'auth/wrong-password': alert('Incorrect password');
                         break
