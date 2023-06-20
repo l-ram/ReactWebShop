@@ -5,8 +5,9 @@ import { ISignUpForm } from "../../types/ISignUpForm"
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils"
 import { FormInput } from "../form-input/form-input.component";
 import Button, {BUTTON_TYPE_CLASSES} from "../button/button.component";
-import './sign-up-form.styles.scss'
+import './sign-up-form.styles.jsx'
 import { UserContext } from "../../contexts/user.context";
+import { SignUpContainer } from "./sign-up-form.styles.jsx";
 
 interface ISignUpFormProps {
 
@@ -65,7 +66,7 @@ export const SignUpForm = (props: ISignUpFormProps) => {
     };
 
     return (
-        <div className="sign-up-container">
+        <SignUpContainer>
             <h2>Don't have an account?</h2>
             <span>Sign up with your email and password</span>
             <form onSubmit={handleSubmit} action="">
@@ -104,12 +105,12 @@ export const SignUpForm = (props: ISignUpFormProps) => {
 
                 <Button
                     isLoading={false}
-                    buttonType={BUTTON_TYPE_CLASSES.inverted}
+                    buttonType={BUTTON_TYPE_CLASSES.base}
                     type="submit"
                 >
-
+                    Sign up
                 </Button>
             </form>
-        </div>
+        </SignUpContainer>
     )
 }
